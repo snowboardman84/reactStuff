@@ -10,12 +10,13 @@ import React, { Component } from 'react';
 //one corresponds to which one. Render() doesn't need to console log an int. you can just
 //console log "render method called"
 
-export default class App extends Component {
+export default class App2 extends Component {
 
   constructor(){
     super();
     this.state = {
-      sumDumProp:true
+      sumDumProp:true,
+      integerCounter: 0
     }
     this.handleClick = this.handleClick.bind(this);
   }
@@ -37,7 +38,7 @@ export default class App extends Component {
   }
   
   shouldComponentUpdate(){
-  
+    return true
   }
   
   componentWillUpdate(){
@@ -58,5 +59,5 @@ export default class App extends Component {
         </button>
       </div>
     )
-   });
+   };
 }

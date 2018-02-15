@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import axios from "axios";
+import { Table } from 'reactstrap';
 //api key 4 l8tr = 3d6b633422451393e953dab4052ea0e4
 //url 4 l8tr  - http://api.openweathermap.org/data/2.5/weather?q=Bozeman&appid= 
 
@@ -7,12 +8,55 @@ class WeatherComponent extends React.Component{
   
   constructor(){
     super();
+    this.state={
+      data:{
+        main:{
+          temp: "loading..."
+          
+        }
+       }
+    }
+  } 
+componentDidMount() {
+    axios.get("http://api.openweathermap.org/data/2.5/weather?q=Bozeman&appid=3d6b633422451393e953dab4052ea0e4").then((response)=> {
+      this.setState({
+        data:response.data,
+      })
+        })
   }
-
   render(){
     return(
       <div>
-        this is your weather component
+      <Table>
+        <thead>
+          <tr>
+            <th>Bozeman</th>
+            <th>Temp</th>
+            <th>Pressure</th>
+            <th>Humidity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>1</th>
+            <td>{this.state.data.main.temp}</td>
+            <td></td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </Table>
       </div>   
       )
     }
